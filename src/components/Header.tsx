@@ -1,4 +1,3 @@
-// src/components/Header.tsx
 import React from 'react';
 
 interface HeaderProps {
@@ -8,7 +7,7 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ customerCount }) => {
   return (
     <div className="header">
-      <h1>DoubleTick</h1>
+     <img src='/Doubletick Logo.png' alt='logo' className='logo' height={40}/>
       <div className="tabs">
         <div className="tab">
           All Customers

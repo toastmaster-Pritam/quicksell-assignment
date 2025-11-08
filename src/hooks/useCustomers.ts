@@ -1,15 +1,11 @@
-// src/hooks/useCustomers.ts
 import { useMemo, useState, useEffect } from 'react';
 import type { Customer, FilterState, SortDirection, SortKey } from '../types';
 import { firstNames, lastNames, domains, addedByList } from '../utils/data';
 import { formatPhone } from '../utils/formatters';
 import { lcg, hash32 } from '../utils/generators';
 
-const TOTAL = 1_000_000; // Total number of customer records
+const TOTAL = 1_000_000;
 
-/**
- * Generates a deterministic customer record based on index
- */
 function recordByIndex(i: number): Customer {
   const seed = hash32(i + 1234567);
   const rnd = lcg(seed);
@@ -22,7 +18,7 @@ function recordByIndex(i: number): Customer {
   const email = `${f.toLowerCase()}.${l.toLowerCase()}${rnd() % 1000}@${domains[rnd() % domains.length]}`;
   const score = rnd() % 1000;
   const now = Date.now();
-  const days = rnd() % 730; // Random date within last 2 years
+  const days = rnd() % 730;
   const lastMessageAt = new Date(now - days * 86400000 - (rnd() % 86400000));
   const addedBy = addedByList[rnd() % addedByList.length];
   const hue = rnd() % 360;
@@ -32,11 +28,7 @@ function recordByIndex(i: number): Customer {
   return { id, name, phone, email, score, lastMessageAt, addedBy, avatar };
 }
 
-/**
- * Checks if a record passes all active filters
- */
 const passesFilters = (rec: Customer, filters: FilterState, debouncedQuery: string): boolean => {
-  // Search filter
   if (debouncedQuery) {
     const s = debouncedQuery.toLowerCase();
     const matches = rec.name.toLowerCase().includes(s) ||
@@ -77,7 +69,6 @@ export const useCustomers = (
 ) => {
   const [allRecords, setAllRecords] = useState<Customer[]>([]);
 
-  // Generate all records on mount
   useEffect(() => {
     const records: Customer[] = [];
     for (let i = 0; i < TOTAL; i++) {
@@ -88,7 +79,6 @@ export const useCustomers = (
 
   // Memoize filtered and sorted records
   const filteredRecords = useMemo(() => {
-    // Apply filters
     let records = allRecords.filter(rec => passesFilters(rec, filters, debouncedQuery));
 
     // Apply sorting

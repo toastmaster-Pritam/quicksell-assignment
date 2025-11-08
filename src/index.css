@@ -1,11 +1,10 @@
 :root {
-  /* Light Theme Colors */
   --bg: #f4f7fa;
   --panel: #ffffff;
   --panel-2: #f9fbfd;
   --muted: #6a7b95;
   --text: #1a202c;
-  --accent: #3b82f6;
+  --accent: #248b24;
   --border: #e2e8f0;
   --row-h: 60px;
   --radius: 10px;
@@ -52,12 +51,12 @@ body {
   gap: 8px;
   padding: 10px 16px;
   border-bottom: 2px solid var(--accent);
-  color: var(--accent);
+  color: var(--text);
   font-weight: 600;
 }
 
 .header .tab .count-badge {
-  background: #e0e7ff;
+  background: #d1f8ef;
   color: var(--accent);
   font-size: 12px;
   padding: 2px 8px;
@@ -80,7 +79,7 @@ body {
   border: 1px solid var(--border);
   padding: 10px 12px;
   border-radius: var(--radius);
-  flex: 1 1 300px; /* Allow shrinking and growing */
+  flex: 1 1 300px;
 }
 
 .searchbar input {
@@ -179,10 +178,10 @@ body {
 /* This wrapper handles the HORIZONTAL scroll */
 .table-scroll-wrapper-x {
   overflow-x: auto;
-  flex: 1; /* Takes up space in card */
+  flex: 1;
   display: flex;
   flex-direction: column;
-  min-height: 0; /* Important for nested flex */
+  min-height: 0; 
 }
 
 .thead {
@@ -312,7 +311,6 @@ body {
   font-weight: 500;
 }
 
-/* Responsive adjustments */
 @media (max-width: 920px) {
   .row { grid-template-columns: 28px 2fr 1.8fr 1.2fr 1fr 1fr; }
 }
@@ -321,7 +319,6 @@ body {
   .foot { justify-content: flex-start; }
 }
 
-/* Responsive fix for dropdowns */
 @media (min-width: 769px) {
   /* On desktop, align the last 2 filter menus to the right */
   .filters .dropdown:nth-last-child(1) .menu,

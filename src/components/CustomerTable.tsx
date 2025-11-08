@@ -1,4 +1,3 @@
-// src/components/CustomerTable.tsx
 import React from 'react';
 import type { Customer, SortDirection, SortKey } from '../types';
 import { formatDate } from '../utils/formatters';
@@ -38,10 +37,7 @@ export const CustomerTable: React.FC<CustomerTableProps> = ({
   );
 
   return (
-    <div className="card">
-      {/* --- JSX FIX START HERE --- */}
-      
-      {/* 1. This new wrapper handles the HORIZONTAL scroll */}
+    <div className="card">   
       <div className="table-scroll-wrapper-x">
         
         {/* Table header */}
@@ -64,7 +60,7 @@ export const CustomerTable: React.FC<CustomerTableProps> = ({
           </div>
         </div>
 
-        {/* 2. This container now ONLY handles VERTICAL scroll */}
+        {/* VERTICAL scroll */}
         <div className="table-container" ref={containerRef} onScroll={onScroll}>
           <div className="tbody" role="rowgroup">
             {visibleRecords.map((rec) => (
@@ -83,7 +79,10 @@ export const CustomerTable: React.FC<CustomerTableProps> = ({
 
                 <div className="td">{rec.email}</div>
                 <div className="td muted">{formatDate(rec.lastMessageAt)}</div>
-                <div className="td">{rec.addedBy}</div>
+                <div className="td">
+                  {/* <img className="avatar-sm" src={`/test_user-3 3.svg`} alt="" /> */}
+                  {rec.addedBy}
+                  </div>
                 <div className="td">
                   <span className="badge" title="Engagement score">⭐ {rec.score}</span>
                 </div>
@@ -98,10 +97,6 @@ export const CustomerTable: React.FC<CustomerTableProps> = ({
           </div>
         </div>
       </div> 
-      {/* 3. End of new wrapper */}
-      
-      {/* --- JSX FIX END HERE --- */}
-
 
       {/* Footer */}
       <div className="foot">

@@ -1,5 +1,3 @@
-// src/utils/generators.ts
-
 /**
  * Linear Congruential Generator for pseudo-random number generation
  */

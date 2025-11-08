@@ -31,7 +31,7 @@ const domainOptions = [
 
 
 export default function App() {
-  // State management
+
   const [loaded, setLoaded] = useState(30);
   const [query, setQuery] = useState("");
   const [sortBy, setSortBy] = useState<SortKey>("id");
@@ -47,7 +47,6 @@ export default function App() {
   const containerRef = useRef<HTMLDivElement>(null!);
   const debouncedQuery = useDebounce(query.trim(), 250);
 
-  // Custom hook for data logic
   const { filteredRecords } = useCustomers(filters, debouncedQuery, sortBy, dir);
 
   // Reset to first 30 rows when filters/search/sort changes
@@ -87,15 +86,15 @@ export default function App() {
 
   return (
     <div className="wrap">
-      {/* <GlobalStyles /> */}
       <Header customerCount={baseCount} />
       
       {/* Toolbar: Search and Filters */}
       <div className="toolbar">
         <div className="searchbar">
-          <span className="icon">🔎</span>
+          {/* <span className="icon">🔎</span> */}
+          <img src='/test_Search-3.svg' alt='search icon' className='icon' />
           <input
-            placeholder="Search customers (name / email / phone)"
+            placeholder="Search Customers"
             value={query}
             onChange={e => setQuery(e.target.value)}
           />
